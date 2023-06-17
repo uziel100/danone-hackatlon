@@ -1,0 +1,71 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true,
+    "jest": true
+  },
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "next",
+    "prettier",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "next/core-web-vitals"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["react", "jest", "react-hooks", "testing-library", "@typescript-eslint"],
+  "overrides": [
+    // Only uses Testing Library lint rules in test files
+    {
+      "files": ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
+      "extends": ["plugin:testing-library/react"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off",
+        "no-var-requires": "off"
+      }
+    },
+    {
+      "files": ["**/src/typesGQL/*.ts"],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": "off",
+        "no-unused-vars": "off"
+      }
+    }
+  ],
+  "rules": {
+    "react/function-component-definition": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/react-in-jsx-scope": "off",
+    "import/no-unresolved": "off",
+    "react/prop-types": "off",
+    "no-unused-vars": "error",
+    "no-plusplus": "off",
+    "consistent-return": "off",
+    "no-console": "off",
+    "max-len": ["error", { "code": 140 }],
+    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+    "react/jsx-filename-extension": ["off", { "extensions": [".js", ".jsx", ".tsx"] }],
+    "react/require-default-props": "off",
+    "react/display-name": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "testing-library/await-async-query": "error",
+    "testing-library/no-await-sync-query": "error",
+    "testing-library/no-debugging-utils": "warn",
+    "testing-library/no-dom-import": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "import/no-extraneous-dependencies": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "react/jsx-no-duplicate-props": "off",
+    "react-hooks/exhaustive-deps": "off"
+  }
+}
