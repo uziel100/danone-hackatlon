@@ -13,7 +13,7 @@ const getProductsService = async (
     variables,
     ...options
   });
-  return resp.data.productCollection;
+  return resp.data;
 };
 
 export default getProductsService;

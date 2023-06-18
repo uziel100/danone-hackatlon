@@ -1,14 +1,14 @@
-import { ProductCollectionQuery, ProductCollectionQueryVariables } from '@/typesGQL/graphql';
+import { ProductHomeQuery, ProductHomeQueryVariables } from '@/typesGQL/graphql';
 import { ApolloClient } from '@apollo/client';
 import { IGeneralOptionQuery } from '@/types/index';
 import { PRODUCTS } from './queries.graphql';
 
 const getProductsService = async (
   apolloClient: ApolloClient<object>,
-  variables: ProductCollectionQueryVariables,
+  variables: ProductHomeQueryVariables,
   options: IGeneralOptionQuery = {}
 ) => {
-  const resp = await apolloClient.query<ProductCollectionQuery, ProductCollectionQueryVariables>({
+  const resp = await apolloClient.query<ProductHomeQuery, ProductHomeQueryVariables>({
     query: PRODUCTS,
     variables,
     ...options

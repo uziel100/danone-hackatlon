@@ -1,44 +1,40 @@
 import type { ReactElement } from 'react';
-import { useEffect, useState } from 'react';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import useProductService from '@/features/Home/hooks/useProductService';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { ProductCard } from '@/features/Home/models/productModel';
 import SectionHero from '@/features/Home/components/SectionHero';
 import SectionFooter from '@/features/Home/components/SectionFooter';
-import CardProduct from '@/features/Home/components/CardProduct';
+import { useSessionContext } from '@/features/Session/context/SessionContext';
+import SectionProducts from '@/features/Home/components/SectionProducts';
+import getProductsService from '@/features/Home/services/getProductsService';
+import { productCardAdapter } from '@/features/Home/adapters/productAdapter';
+import { addApolloState, initializeApollo } from '../utils';
 import LayoutMain from '../components/layouts/layoutMain/LayoutMain';
 
-const HomePage = () => {
-  const [products, setProducts] = useState<ProductCard[]>([]);
-  const { getProducts } = useProductService();
+type DataSsrProps = {
+  products: ProductCard[];
+};
 
-  useEffect(() => {
-    getProducts({})
-      .then(res => {
-        setProducts(res);
-      })
-      .then(err => {
-        console.log(err);
-      });
-  }, []);
+export const getServerSideProps: GetServerSideProps<DataSsrProps> = async () => {
+  const apolloClient = initializeApollo();
+
+  const response = await getProductsService(apolloClient, {
+    limit: 4
+  });
+
+  const products = response?.items.map(productCardAdapter);
+
+  return addApolloState(apolloClient, {
+    props: { products }
+  });
+};
+
+const HomePage = ({ products }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const { user } = useSessionContext();
 
   return (
     <>
-      <SectionHero />
-      <Container sx={{ py: 12 }} maxWidth="lg">
-        <Typography mb={4} fontWeight={600} variant="h4" align="left" color="text.primary" gutterBottom>
-          Productos
-        </Typography>
-        <Grid container spacing={4}>
-          {products.map(card => (
-            <Grid item key={card.slug} xs={12} sm={6} md={4}>
-              <CardProduct title={card.title} description="some description" image={card.image} />
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
+      <SectionHero showButtonRegister={!user} />
+      <SectionProducts products={products} />
       <SectionFooter />
     </>
   );

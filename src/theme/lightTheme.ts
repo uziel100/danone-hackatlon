@@ -8,6 +8,7 @@ const Theme = createTheme({
     mode: 'light',
     primary: {
       main: '#0A135C',
+
       contrastText: '#fff',
       50: '#E8F3FF',
       100: '#D5E8FF',
@@ -16,7 +17,7 @@ const Theme = createTheme({
       400: '#5686FF',
       500: '#2F59FF',
       600: '#0C26FF',
-      700: '#061CCD',
+      700: '#142290',
       800: '#061CCD',
       900: '#10249F'
     },

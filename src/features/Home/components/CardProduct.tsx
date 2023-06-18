@@ -1,12 +1,13 @@
 import { FC } from 'react';
 import { Button, Card, CardContent, CardMedia, Typography, CardActions } from '@mui/material';
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 
 interface Props {
   title: string;
   image: string;
-  description: string;
+  onClick: () => void;
 }
-const CardProduct: FC<Props> = ({ title, image, description }) => (
+const CardProduct: FC<Props> = ({ title, image, onClick }) => (
   <Card elevation={0} sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
     <CardMedia
       component="div"
@@ -14,24 +15,32 @@ const CardProduct: FC<Props> = ({ title, image, description }) => (
         pt: '56.25%'
       }}
       image={image}
+      title={title}
+      onClick={onClick}
     />
     <CardContent sx={{ flexGrow: 1 }}>
-      <Typography gutterBottom variant="body1" component="h4">
+      <Typography fontWeight={600} gutterBottom variant="body1" component="h4">
         {title}
-      </Typography>
-      <Typography component="p" variant="body2">
-        {description}
       </Typography>
     </CardContent>
     <CardActions>
       <Button
         sx={{
-          borderRadius: 4
+          borderRadius: 4,
+          transition: 'all 800ms ease',
+          '& .MuiButton-endIcon': {
+            display: 'none'
+          },
+          '&:hover .MuiButton-endIcon': {
+            display: 'flex'
+          }
         }}
         fullWidth
         variant="contained"
-        color="secondary"
+        color="primary"
         size="small"
+        endIcon={<ArrowRightAltIcon />}
+        onClick={onClick}
       >
         Ver mas
       </Button>

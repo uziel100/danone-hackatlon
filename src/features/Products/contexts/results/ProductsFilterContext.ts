@@ -1,17 +1,19 @@
 import { createContext, useContext } from 'react';
-import { Product, ProductFilters } from '../../models/productModel';
+import { Product, ProductFilters, ProductList, ProductPagination } from '../../models/productModel';
 
 export interface ProductsFilterContextState {
   loading: boolean;
-  pagination: any;
+  pagination: ProductPagination;
+  totalCount: number;
   filters: ProductFilters;
-  items: any[] | null;
+  items: Product[] | null;
 }
 
 export interface ProductsFilterContextProps extends ProductsFilterContextState {
   onChangeLoading: (loading: boolean) => void;
-  onChangeData: (data: Product[]) => void;
+  onChangeData: (data: ProductList) => void;
   onChangeFilters: (filters: any) => void;
+  onAddItems: (data: Product[]) => void;
 }
 
 const ProductsFilterContext = createContext({} as ProductsFilterContextProps);

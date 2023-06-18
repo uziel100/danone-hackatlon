@@ -81,7 +81,8 @@ const BaseTheme: ThemeOptions = {
     MuiButton: {
       styleOverrides: {
         root: {
-          boxShadow: 'none'
+          boxShadow: 'none',
+          borderRadius: '22px'
         }
       }
     }

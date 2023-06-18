@@ -7,6 +7,11 @@ export interface Product {
   description: string;
 }
 
+export interface ProductList {
+  totalCount: number;
+  items: Product[];
+}
+
 export interface ProductFilters {
   query?: string;
   isEcoFarming?: boolean;

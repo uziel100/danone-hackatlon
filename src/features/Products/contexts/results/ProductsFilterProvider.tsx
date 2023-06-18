@@ -1,13 +1,17 @@
 import { FC, useReducer, useMemo } from 'react';
 import ProductsFilterContext, { ProductsFilterContextState } from './ProductsFilterContext';
 import ProductsFilterReducer from './productsFilterReducer';
-import { Product, ProductFilters } from '../../models/productModel';
+import { Product, ProductFilters, ProductList } from '../../models/productModel';
 
 const INITIAL_STATE: ProductsFilterContextState = {
   loading: false,
   filters: {},
-  pagination: {},
-  items: []
+  totalCount: 0,
+  pagination: {
+    limit: 3,
+    skip: 0
+  },
+  items: null
 };
 
 interface ProductsFilterProviderProps {
@@ -19,9 +23,10 @@ const ProductsFilterProvider: FC<ProductsFilterProviderProps> = ({ children }) =
 
   const onChangeLoading = (loading: boolean) => dispatch({ type: 'UPDATE_LOADING', payload: loading });
   const onChangeFilters = (filters: Partial<ProductFilters>) => dispatch({ type: 'UPDATE_FILTERS', payload: filters });
-  const onChangeData = (data: Product[]) => dispatch({ type: 'SET_DATA', payload: data });
+  const onChangeData = (data: ProductList) => dispatch({ type: 'SET_DATA', payload: data });
+  const onAddItems = (data: Product[]) => dispatch({ type: 'ADD_ITEMS', payload: data });
 
-  const memorized = useMemo(() => ({ ...state, onChangeLoading, onChangeFilters, onChangeData }), [state]);
+  const memorized = useMemo(() => ({ ...state, onChangeLoading, onChangeFilters, onChangeData, onAddItems }), [state]);
 
   return <ProductsFilterContext.Provider value={memorized}>{children}</ProductsFilterContext.Provider>;
 };
