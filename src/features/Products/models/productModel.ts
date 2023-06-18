@@ -16,6 +16,7 @@ export interface ProductList {
 export interface ProductFilters {
   query?: string;
   isEcoFarming?: boolean;
+  energeticValue?: number;
 }
 
 export interface ProductPagination {

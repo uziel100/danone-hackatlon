@@ -27,10 +27,10 @@ export const productDetailAdapter = (data: ProductRoot): ProductDetail => ({
 });
 
 export const productFiltersAdapter = (filters: ProductFilters): ProductFilter => {
-  const { query, isEcoFarming } = filters;
+  const { query, energeticValue } = filters;
 
   return {
     productName_contains: query?.length ? query : undefined,
-    isEcoFarming
+    energeticValue_lte: energeticValue || undefined
   };
 };

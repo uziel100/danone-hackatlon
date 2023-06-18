@@ -18,7 +18,7 @@ const useProductRelatedOfUser = () => {
       setLoading(true);
       getProducts(
         {
-          limit: 3,
+          limit: 9,
 
           where: {
             energeticValue_lte: user.settings?.calories.remaining
@@ -45,7 +45,7 @@ const useProductRelatedOfUser = () => {
         setLoadingMore(true);
         const response = await getProducts(
           {
-            limit: 3,
+            limit: 9,
             skip: products?.length ?? 0,
             where: {
               energeticValue_lt: user.settings?.calories.remaining

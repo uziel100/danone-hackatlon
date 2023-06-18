@@ -16,7 +16,6 @@ export const PRODUCTS_RESULTS = graphql(`
         sys {
           id
         }
-        isEcoFarming
         description {
           json
         }
@@ -35,6 +34,7 @@ export const GET_PRODUCT = graphql(`
       items {
         availableIn
         carbohydrates
+        energeticValue
         isEcoFarming
         description {
           json
@@ -50,7 +50,6 @@ export const GET_PRODUCT = graphql(`
           url
           fileName
         }
-        isEcoFarming
         productName
         slug
       }

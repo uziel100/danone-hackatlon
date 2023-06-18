@@ -5,10 +5,14 @@ import { Product, ProductFilters, ProductList } from '../../models/productModel'
 
 const INITIAL_STATE: ProductsFilterContextState = {
   loading: false,
-  filters: {},
+  filters: {
+    query: '',
+    energeticValue: 0,
+    isEcoFarming: false
+  },
   totalCount: 0,
   pagination: {
-    limit: 3,
+    limit: 9,
     skip: 0
   },
   items: null

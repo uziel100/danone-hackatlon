@@ -1,15 +1,29 @@
 import { FC } from 'react';
-import { Button, Card, CardContent, CardMedia, Typography, CardActions } from '@mui/material';
+import { Button, Card, CardContent, CardMedia, Typography, CardActions, Chip } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 
 interface Props {
   title: string;
   image: string;
+  calories: number;
   onClick: () => void;
   onAdd: () => void;
 }
-const ProductCard: FC<Props> = ({ title, image, onClick, onAdd }) => (
-  <Card elevation={0} sx={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius: 2 }}>
+const ProductCard: FC<Props> = ({ title, image, onClick, onAdd, calories }) => (
+  <Card
+    elevation={0}
+    sx={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius: 2, position: 'relative' }}
+  >
+    <Chip
+      sx={{
+        position: 'absolute',
+        top: 8,
+        right: 8
+      }}
+      size="small"
+      color="error"
+      label={`${calories} kcal`}
+    />
     <CardMedia
       component="div"
       sx={{

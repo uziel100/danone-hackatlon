@@ -47,6 +47,7 @@ const ProductList: FC<Props> = ({ loading, products, loadingFetchingMore, showLo
               onClick={() => router.push(`/products/${product.slug}`)}
               title={product.title}
               image={product.image}
+              calories={product.energeticValue}
               onAdd={() => handleOpenModal(product)}
             />
           </Grid>
