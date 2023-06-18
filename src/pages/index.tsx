@@ -3,6 +3,7 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { ProductCard } from '@/features/Home/models/productModel';
 import SectionHero from '@/features/Home/components/SectionHero';
 import SectionFooter from '@/features/Home/components/SectionFooter';
+import SectionAbout from '@/features/Home/components/SectionAbout';
 import { useSessionContext } from '@/features/Session/context/SessionContext';
 import SectionProducts from '@/features/Home/components/SectionProducts';
 import getProductsService from '@/features/Home/services/getProductsService';
@@ -34,6 +35,7 @@ const HomePage = ({ products }: InferGetServerSidePropsType<typeof getServerSide
   return (
     <>
       <SectionHero showButtonRegister={!user} />
+      <SectionAbout />
       <SectionProducts products={products} />
       <SectionFooter />
     </>

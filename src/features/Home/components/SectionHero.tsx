@@ -59,8 +59,7 @@ const SectionHero: FC<Props> = ({ showButtonRegister }) => {
             color="text.primary"
             paragraph
           >
-            Explora nuestra exquisita gama ecológica y saludable de Danone. Deliciosos sabores que cuidan de ti y del
-            planeta. ¡Descubre una experiencia única!
+            ¡Obtén las mejores recomendaciones de productos basadas en tu meta de calorías diarias!
           </Typography>
           <Stack
             justifyContent={{
