@@ -17,9 +17,9 @@ export default function MyDocument({ emotionStyleTags }: MyDocumentProps) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-        <meta name="description" content="Pixel Land" />
-        <meta name="application-name" content="Pixel Land" />
-        <meta name="apple-mobile-web-app-title" content="Pixel Land" />
+        <meta name="description" content="Danone Mexico" />
+        <meta name="application-name" content="Danone Mexico" />
+        <meta name="apple-mobile-web-app-title" content="Danone Mexico" />
         <meta name="emotion-insertion-point" content="" />
         {emotionStyleTags}
       </Head>
