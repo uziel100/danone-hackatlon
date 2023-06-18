@@ -1,122 +1,136 @@
+# Calorie Control Project
+
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://cdn.blackpixel.mx/RO-En6qG5n/RocketPixel.svg" width="200" alt="Nest Logo" /></a>
+  <img src="https://images.ctfassets.net/jzm5e5q0ijrn/5YdXtdxpetwndEaJykck9H/1698da314c380776094e917ea9180f2a/danone02.svg" width="200" alt="Danone Logo" />
 </p>
 
-# Danone tracker calories
+This project aims to help you keep track of your daily calorie limit and recommend products that best suit your nutritional goals.
 
-## Descripción del proyecto
+## Descripción
 
-Llevar un control de las calorías consumidas en el día
+Calorie control is essential for maintaining a healthy diet and achieving your wellness goals. With this application, you can set your maximum daily calorie intake and receive personalized recommendations for products and foods that will help you reach your goals.
+
+## Características Principales
+
+- User registration and logout (simulated with localStorage)
+- Daily calorie limit tracking
+- Product filtering by search, maximum calories, or user's calorie limit
+- Product recommendations based on your goals (calorie limit)
+- Tracking of your daily calorie consumption
+- Product detail view
+- Intuitive and user-friendly interface
 
 ## Instalación
 
-1. Versiones de Node y NPM
+Make sure you have Node.js and npm installed on your machine. Then, follow these steps:
 
 ```bash
 node: 18.9.0
 npm : 8.19.1
 ```
 
-2. Clonar proyecto
-3. Instalar dependencias
+1. Clone the repository: `git clone https://github.com/uziel100/danone-hackatlon.git`
+2. Navigate to the project directory: `cd danone-hackatlon`
+3. Install the dependencies: `npm install`
+4. Copy the `.env.template` file and rename it to `.env.local`.
+5. Replace the values of the environment variables in the `.env.local` file with the corresponding values from Contentful.
+6. In the `codegen.ts` file, replace the schema URL with your GraphQL server's URL (Contentful) and the token with your Contentful space token.
 
 ```bash
-npm install
+  schema: {
+    '{URL_SCHEMA_GRAPHQL}': {
+      headers: {
+        Authorization: 'Bearer {TOKEN}'
+      }
+    }
+  },
 ```
 
-4. Tener corriendo el servidor de graphql (backend)
+7. Start the project: `npm run dev`
 
-5. Iniciar proyecto
+## Commnads
 
-```bash
-npm run dev
-```
-
-## Comandos
-
-- Antes de enviar un commit ejecutar el linter y corregir los errores
+- Before committing, run the linter and fix any errors:
 
 ```bash
 npm run linter
 ```
 
-- Para generar el tipado para los archivos .graphql se debe tener corriendo el servidor de graphql y ejecutar el siguiente comando
+- To generate typings for .graphql files, run the following command while the GraphQL server is running:
 
 ```bash
 npm run codegen
 ```
 
-- Si necesitas tener en tiempo real los cambios en los archivos .graphql ejecutar el siguiente comando
+- If you need real-time updates for .graphql files, run the following command:
 
 ```bash
 npm run codegen:watch
 ```
 
-- Para correr los test
+## Stack
 
-```bash
-npm run test
-```
-
-- Para generar el coverage de los test
-
-```bash
-npm run test:coverage
-```
-
-## Tecnologías utilizadas
-
+- CONTENTFUL (https://www.contentful.com/) - CMS
 - NEXT JS 12 (https://nextjs.org/)
 - REACT JS 17
 - TYPESCRIPT 4.9.5
-- APOLLO CLIENT 3 (https://www.apollographql.com/docs/react) - Manejo de graphql
-- MUI V5 (https://mui.com/) - framework de css de material design
-- DATE-FNS (https://date-fns.org/) - manejo de fechas
-- FORMIK (https://formik.org/) y YUP (https://github.com/jquense/yup) para el manejo de formularios y validaciones
-- GRAPHQL CODEGEN (https://www.graphql-code-generator.com/) - Generador de tipado para los archivos .graphql
-- REACT DROPZONE (https://react-dropzone.js.org/) - Manejo de drag and drop
-- JEST (https://jestjs.io/) - Framework de testing
-- REACT TESTING LIBRARY (https://testing-library.com/docs/react-testing-library/intro/) - Librería de testing
-- PRETTIER (https://prettier.io/) - Formateador de código
+- APOLLO CLIENT 3 (https://www.apollographql.com/docs/react) - GraphQL management
+- MUI V5 (https://mui.com/) - Material Design CSS framework
+- FORMIK (https://formik.org/) and YUP (https://github.com/jquense/yup) for form handling and validation
+- GRAPHQL CODEGEN (https://www.graphql-code-generator.com/) - Typing generator for `.graphql` files
+- PRETTIER (https://prettier.io/) - Code formatter
 
-## Estructura de carpetas (Estructura por funcionalidad o modular)
+## Decision Making
+
+### 1. Arquitectura (Estructura por funcionalidad o modular)
+
+A modular architecture has been chosen, where each folder represents a functionality of the application. For example, the `/Auth` folder represents the authentication functionality, and it contains components, hooks, utils, etc. that are used for this functionality.
 
 **/components**
 
---- **/common —** Componentes comunes o compuestos que normalmente podrian reutilizar los componentes de la carpeta shared
+- **/common** - Common or composite components that can typically be reused by components in the shared folder.
+- **/layouts** - Within the `layout` folder, there are purely presentational components that define the basic structure of different views/routes in the application.
+- **/shared** - Folder containing agnostic components following the structure of Material UI components.
+- **/styles** - Shared styles.
+- **/icons** - Custom SVG icons or icons from Material UI.
 
---- **/layouts —** Dentro de la carpeta **layout** albergo componentes puramente presentacionales que pintan la estructura básica de las distintas vistas / rutas de la aplicación.
+**/consts**
 
---- **/shared —** Carpeta de componetes agnosticos siguiente la estructura de componentes de material UI
+- Inside the `consts` folder, there are `.js` files that define constants for the application, such as colors and enumerated values for certain fields.
 
---- **/styles —** estilos compartidos
+**/utils**
 
---- **/icons** — Iconos personalizados svg o icons del propio material ui
+- Utilities in the form of functions that are used throughout the application. Each function is placed in its own file to encourage reusability.
 
-**/consts —** Dentro de `const`se encuentran archivos `.js` que definen las constantes de nuestra aplicación, como pueden ser colores, enumerados para determinados campos
+**/hooks**
 
-**/utils —** quí se encuentran utilidades en forma de función que uso a lo largo de la aplicación.
+- This folder contains hooks used in the application, such as `useFetch` or `useUserContext`. It includes only global hooks for accessing specific contexts.
 
-Cada función se encuentra dentro de su propio archivo (tiendo a evitar en esta carpeta tener archivos que exporten varias funciones) y encapsula determinada lógica de cara a reutilizarla
+**/theme**
 
-**/hooks —** Esta carpeta también es autodescriptiva ya que en ella se encontrarán los *hooks* 
-de nuestra aplicación, por ejemplo, `useFetch`
- o `useUserContext` , unicamente los hooks globales
- para recuperar determinados contextos.
+- The `theme` folder houses files responsible for generating global styles for the application, such as colors, fonts, margin dimensions, or button styles.
 
-**/theme —** La carpeta `theme`se encarga de albergar los archivos encargados de generar los estilos globales de la aplicación, como colores, fuentes, dimensiones de los márgenes o estilos de los botones.
+**/context**
 
-**/context —** Colocar aquí cada uno de los contextos que defina para compartir estado global entre los distintos componentes de la aplicación.
+- Place here each context defined to share global state among different components in the application.
 
-**/servicios —** Servicios globales
+**/services**
 
-**/types —** Tipo, interfaces y clases globales
+- Global services.
 
-**/features —** Dentro de esta carpeta iran los módulos de la aplicación o características que se puedan pensar en una entidad general
+**/types**
 
-**/pages —** Paginas de la aplicación siguiendo el routing de next js
+- Global types, interfaces, and classes.
 
-# Ejemplo de estructura de archivos
+**/features**
+
+- Within this folder, there are modules or features of the application that can be considered as a general entity.
+
+**/pages**
+
+- Application pages following the routing of Next.js.
+
+## Ejemplo de estructura de archivos
 
 ```
 |-- components/
@@ -184,6 +198,7 @@ de nuestra aplicación, por ejemplo, `useFetch`
 |   |-- index.js
 |-- features/
 |   |-- Session/
+|   |   |-- Adapters/
 |   |   |-- components/
 |   |   |-- utils/
 |   |   |-- services/
@@ -192,6 +207,7 @@ de nuestra aplicación, por ejemplo, `useFetch`
 |   |   |-- contexts/
 |   |   |-- views/
 |   |-- Home/
+|   |   |-- Adapters/
 |   |   |-- components/
 |   |   |-- utils/
 |   |   |-- models/
@@ -204,3 +220,17 @@ de nuestra aplicación, por ejemplo, `useFetch`
 |-- typesGQL/
 |-- pages/
 ```
+
+## Contribution
+
+If you wish to contribute to the project, you can follow the steps below:
+
+1. Fork the repository.
+2. Create a branch for your new feature or fix: `git checkout -b new-feature`
+3. Make your changes and commit them: `git commit -m "Description of the new feature"`
+4. Push your changes to your remote repository: `git push origin new-feature`
+5. Open a Pull Request in this repository to review your changes.
+
+## License
+
+MIT
