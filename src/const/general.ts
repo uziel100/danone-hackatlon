@@ -1,13 +1,3 @@
-import { IGeneralSelect } from '../types';
+export const USER_LOCAL_STORAGE_KEY = 'user';
 
-// eslint-disable-next-line import/prefer-default-export
-export const ROLE_LIST: IGeneralSelect[] = [
-  {
-    id: 'user',
-    name: 'User App'
-  },
-  {
-    id: 'admin',
-    name: 'Admin'
-  }
-];
+export const TOKEN_COOKIE_KEY = 'token';

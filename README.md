@@ -2,11 +2,11 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://cdn.blackpixel.mx/RO-En6qG5n/RocketPixel.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
-# Pixeland Admin
+# Danone tracker calories
 
 ## Descripción del proyecto
 
-Consola administrativa para la aplicacion Pixeland, la consola permitirá a los administradores llevar un seguimiento detallado de los empleados y sus avances, y otorgar recompensas por sus logros. Con esta herramienta, se busca mejorar la motivación y el compromiso de los empleados, y aumentar la eficiencia de la empresa en general.
+Llevar un control de las calorías consumidas en el día
 
 ## Instalación
 

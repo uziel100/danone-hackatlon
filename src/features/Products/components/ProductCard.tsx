@@ -5,10 +5,10 @@ import AddIcon from '@mui/icons-material/Add';
 interface Props {
   title: string;
   image: string;
-  description: string;
   onClick: () => void;
+  onAdd: () => void;
 }
-const ProductCard: FC<Props> = ({ title, image, description, onClick }) => (
+const ProductCard: FC<Props> = ({ title, image, onClick, onAdd }) => (
   <Card elevation={0} sx={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius: 2 }}>
     <CardMedia
       component="div"
@@ -28,9 +28,6 @@ const ProductCard: FC<Props> = ({ title, image, description, onClick }) => (
       <Typography gutterBottom variant="body1" component="h4">
         {title}
       </Typography>
-      <Typography component="p" variant="body2">
-        {description}
-      </Typography>
     </CardContent>
     <CardActions>
       <Button
@@ -42,6 +39,7 @@ const ProductCard: FC<Props> = ({ title, image, description, onClick }) => (
         color="secondary"
         size="small"
         startIcon={<AddIcon />}
+        onClick={onAdd}
       >
         Agregar
       </Button>

@@ -1,10 +1,11 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Box, Grid } from '@mui/material';
 import { BpButton, BpTypography } from '@/components/shared';
 import { useRouter } from 'next/router';
 import { Product } from '../models/productModel';
 import ProductCardSkeleton from './ProductCardSkeleton';
 import ProductCard from './ProductCard';
+import ModalAddProduct from './ModalAddProduct';
 
 interface Props {
   loading: boolean;
@@ -15,10 +16,27 @@ interface Props {
 }
 
 const ProductList: FC<Props> = ({ loading, products, loadingFetchingMore, showLoadMore, onFetchMore }) => {
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const router = useRouter();
+
+  const handleOpenModal = (product: Product) => {
+    setSelectedProduct(product);
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+    setSelectedProduct(null);
+  };
 
   return (
     <>
+      {selectedProduct && (
+        <ModalAddProduct product={selectedProduct} open={openModal} onClose={handleCloseModal}>
+          {selectedProduct?.title}
+        </ModalAddProduct>
+      )}
       <Grid container spacing={3}>
         {loading &&
           new Array(12).fill(0).map((_, index) => (
@@ -32,8 +50,8 @@ const ProductList: FC<Props> = ({ loading, products, loadingFetchingMore, showLo
             <ProductCard
               onClick={() => router.push(`/products/${product.slug}`)}
               title={product.title}
-              description="Some description"
               image={product.image}
+              onAdd={() => handleOpenModal(product)}
             />
           </Grid>
         ))}

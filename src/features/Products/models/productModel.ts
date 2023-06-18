@@ -4,7 +4,7 @@ export interface Product {
   title: string;
   slug: string;
   image: string;
-  description: string;
+  energeticValue: number;
 }
 
 export interface ProductList {

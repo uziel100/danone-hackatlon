@@ -2,41 +2,40 @@ import * as React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { setCookie } from 'cookies-next';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import useError from '@/hooks/useError';
 import Typography from '@mui/material/Typography';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
+import { TOKEN_COOKIE_KEY } from '@/const/general';
 import useUserProfile from '../hooks/useUserProfile';
 import { useSessionContext } from '../context/SessionContext';
 
 const validationSchema = Yup.object({
   fullName: Yup.string().required('Campo obligatorio'),
-  email: Yup.string().email('Formato invalido').required('Campo obligatorio'),
-  password: Yup.string().required('Campo obligatorio')
+  email: Yup.string().email('Formato invalido').required('Campo obligatorio')
 });
 type FormValues = Yup.InferType<typeof validationSchema>;
 
-const LoginPage = () => {
+const RegisterPage = () => {
   const router = useRouter();
   const { registerUser } = useUserProfile();
   const { logError, showAlert } = useError();
   const { onRegisterUser } = useSessionContext();
 
   const formik = useFormik<FormValues>({
-    initialValues: { email: '', password: '', fullName: '' },
+    initialValues: { email: '', fullName: '' },
     validationSchema,
-    onSubmit: async ({ email, password, fullName }) => {
+    onSubmit: async ({ email, fullName }) => {
       try {
-        const userCreated = await registerUser({ email, password, fullName });
+        const userCreated = await registerUser({ email, fullName });
         if (userCreated) {
           // save token
-          setCookie('token', userCreated.token, {
+          setCookie(TOKEN_COOKIE_KEY, userCreated.token, {
             maxAge: 30 * 24 * 60 * 60,
             path: '/'
           });
@@ -76,19 +75,17 @@ const LoginPage = () => {
             alignItems: 'center'
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
+          <Image src="/images/danone02.svg" alt="logo" width={200} height={100} />
+          <Typography mt={3} mb={1} component="h1" variant="h6" fontWeight={400} textAlign="center">
+            ¡Comparte tu objetivo diario de calorías y descubre recomendaciones de productos personalizadas!
           </Typography>
           <Box mt={4} component="form" noValidate onSubmit={formik.handleSubmit}>
             <TextField
               id="fullName"
               name="fullName"
-              label="Full Name"
+              label="Nombre completo"
               type="text"
-              placeholder="fullName"
+              placeholder="Nombre completo"
               value={formik.values.fullName}
               onChange={formik.handleChange}
               error={formik.touched.fullName && Boolean(formik.errors.fullName)}
@@ -104,9 +101,9 @@ const LoginPage = () => {
             <TextField
               id="email"
               name="email"
-              label="Email"
+              label="Correo electrónico"
               type="text"
-              placeholder="email"
+              placeholder="Correo electrónico"
               value={formik.values.email}
               onChange={formik.handleChange}
               error={formik.touched.email && Boolean(formik.errors.email)}
@@ -119,26 +116,9 @@ const LoginPage = () => {
                 'aria-label': 'email'
               }}
             />
-            <TextField
-              id="password"
-              name="password"
-              label="Contraseña"
-              type="text"
-              placeholder="password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              error={formik.touched.password && Boolean(formik.errors.password)}
-              helperText={formik.touched.password && formik.errors.password}
-              fullWidth
-              sx={{
-                mb: 2
-              }}
-              inputProps={{
-                'aria-label': 'password'
-              }}
-            />
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-              Sign In
+
+            <Button type="submit" fullWidth color="secondary" variant="contained" sx={{ mt: 3, mb: 2 }}>
+              Crear cuenta
             </Button>
           </Box>
         </Box>
@@ -147,4 +127,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;

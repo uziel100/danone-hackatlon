@@ -1,5 +1,4 @@
 export { default as BpButton } from './button/BpButton';
-export * from './feedback/BpModal';
-export * from './input';
+export { default as BpTextField } from './input/BpTextField';
 export * from './transitions';
 export { default as BpTypography } from './typography/BpTypography';

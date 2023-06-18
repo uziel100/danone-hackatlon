@@ -4,8 +4,8 @@ import { Product, ProductDetail, ProductFilters, ProductList } from '../models/p
 export const productAdapter = (data: ProductRoot): Product => ({
   title: data.productName ?? '',
   slug: data.slug ?? '',
-  description: `Description: ${data.productName}`,
-  image: data.image?.url ?? ''
+  image: data.image?.url ?? '',
+  energeticValue: data.energeticValue ?? 0
 });
 
 export const productListAdapter = (data: ProductsResultsQuery): ProductList => ({
@@ -16,7 +16,6 @@ export const productListAdapter = (data: ProductsResultsQuery): ProductList => (
 export const productDetailAdapter = (data: ProductRoot): ProductDetail => ({
   title: data.productName ?? '',
   slug: data.slug ?? '',
-  description: `Description: ${data.productName}`,
   descriptionRichText: data.description?.json,
   image: data.image?.url ?? '',
   availableIn: data.availableIn ?? 0,

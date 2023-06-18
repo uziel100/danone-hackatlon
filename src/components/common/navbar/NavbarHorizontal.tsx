@@ -38,17 +38,28 @@ const NavbarHorizontal: FC<NavbarHorizontalProps> = ({ hiddenIconMenu, onToggleD
         sx={{ display: 'flex', justifyContent: !hiddenIconMenu ? 'space-between' : 'flex-end', alignItems: 'center' }}
         maxWidth={false}
       >
-        <IconButton
+        <Box
+          alignItems="center"
+          gap={2}
           sx={{
             display: {
               xs: 'flex',
               md: 'none'
             }
           }}
-          onClick={onToggleDrawer}
         >
-          <MenuIcon />
-        </IconButton>
+          <IconButton onClick={onToggleDrawer}>
+            <MenuIcon />
+          </IconButton>
+          <Image
+            style={{ cursor: 'pointer' }}
+            title="Ir al inicio"
+            src="/images/danone-logo.svg"
+            alt="Logo de Danone"
+            width={80}
+            height={24}
+          />
+        </Box>
         <Stack
           direction="row"
           display={{
@@ -103,7 +114,36 @@ const NavbarHorizontal: FC<NavbarHorizontalProps> = ({ hiddenIconMenu, onToggleD
             </List>
           </nav>
         </Stack>
-        {!user && <Link href="/register">Register</Link>}
+
+        {!user && (
+          <List
+            sx={{
+              direction: 'row',
+              display: {
+                xs: 'none',
+                md: 'flex'
+              },
+              alignItems: 'center',
+              gap: 2
+            }}
+          >
+            <ListItem disablePadding>
+              <ListItemButton
+                sx={{
+                  borderRadius: 8,
+                  '& a': {
+                    color: 'custom.violetBlue',
+                    textDecoration: 'none',
+                    fontWeight: 600,
+                    fontSize: '1.2rem'
+                  }
+                }}
+              >
+                <Link href="/register">Registrarse</Link>
+              </ListItemButton>
+            </ListItem>
+          </List>
+        )}
         {user && (
           <Tooltip title="Ver perfil" arrow>
             <SessionMenuStyle sx={{ width: 'auto' }} onClick={() => router.push('/profile')}>

@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import LoginPage from '@/features/Session/pages/LoginPage';
+import LoginPage from '@/features/Session/pages/RegisterPage';
 import { LayoutAuth } from '@/components/layouts';
 
 const LoginPageRoot = () => <LoginPage />;

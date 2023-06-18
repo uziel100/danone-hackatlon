@@ -10,11 +10,6 @@ import Router from 'next/router';
 import NProgress from 'nprogress';
 import { ApolloProvider } from '@apollo/client';
 
-// date picker
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import esLocale from 'date-fns/locale/es';
-
 import { ThemeContextProvider } from '@/context/theme/ThemeContextProvider';
 import { EmotionCache } from '@emotion/cache';
 
@@ -55,16 +50,7 @@ const WebApp: FC<WebAppPropsWithLayout> = ({ Component, emotionCache = clientSid
       <ApolloProvider client={apolloClient}>
         <ThemeContextProvider emotionCache={emotionCache}>
           <SnackbarProvider maxSnack={3}>
-            <LocalizationProvider
-              dateAdapter={AdapterDateFns}
-              adapterLocale={esLocale}
-              localeText={{
-                okButtonLabel: 'Aceptar',
-                cancelButtonLabel: 'Cerrar'
-              }}
-            >
-              <SessionProvider>{getLayout(<Component {...pageProps} />)}</SessionProvider>
-            </LocalizationProvider>
+            <SessionProvider>{getLayout(<Component {...pageProps} />)}</SessionProvider>
           </SnackbarProvider>
         </ThemeContextProvider>
       </ApolloProvider>

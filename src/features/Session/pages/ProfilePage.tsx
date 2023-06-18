@@ -1,111 +1,35 @@
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import { BpTypography } from '@/components/shared';
-import { Container, Box, Grid, Card, CardContent, Stack, TextField, Button } from '@mui/material';
-import useError from '@/hooks/useError';
+import { Container, Box, Grid, Alert } from '@mui/material';
+import ProductList from '@/features/Products/components/ProductList';
 import { useSessionContext } from '../context/SessionContext';
-
-const validationSchema = Yup.object({
-  calories: Yup.number().required('Campo obligatorio')
-});
-
-type FormValues = Yup.InferType<typeof validationSchema>;
+import useProductRelatedOfUser from '../hooks/useProductRelatedOfUser';
+import ProfileSetting from '../components/ProfileSetting';
 
 const ProfilePage = () => {
-  const { logError } = useError();
-  const { user, onUpdateCalories } = useSessionContext();
-
-  const formik = useFormik<FormValues>({
-    initialValues: { calories: 0 },
-    validationSchema,
-    onSubmit: async ({ calories }) => {
-      try {
-        console.log({ calories });
-        onUpdateCalories({
-          calories: {
-            consumed: 0,
-            total: calories
-          }
-        });
-      } catch (error) {
-        logError(error);
-      }
-    }
-  });
+  const { user } = useSessionContext();
+  const { products, loading, loadingMore, onGetMoreProducts, showLoadMore } = useProductRelatedOfUser();
 
   return (
-    <Box height="calc(100vh - 80px)">
+    <Box mt={3}>
       <Container maxWidth="lg">
         <Grid container spacing={4}>
-          <Grid item xs={12} sm={6} md={4}>
-            <Card>
-              <CardContent>
-                <BpTypography component="p" variant="h5">
-                  Bienvenido
-                </BpTypography>
-                <BpTypography component="p" variant="h6">
-                  {user?.fullName}
-                </BpTypography>
-                <BpTypography component="p" variant="h6">
-                  Your maximum kcal limit
-                </BpTypography>
-
-                <Stack my={2} direction="row" justifyContent="space-between">
-                  <Box sx={{ border: '1px solid black' }}>
-                    <BpTypography component="p" variant="h6">
-                      {user?.settings?.calories.consumed || 0}
-                    </BpTypography>
-                    <BpTypography component="p" variant="h6">
-                      Consumed
-                    </BpTypography>
-                  </Box>
-                  <Box sx={{ border: '1px solid black' }}>
-                    <BpTypography component="p" variant="h6">
-                      {(user?.settings?.calories.total || 0) - (user?.settings?.calories.consumed || 0)}
-                    </BpTypography>
-                    <BpTypography component="p" variant="h6">
-                      Remaining
-                    </BpTypography>
-                  </Box>
-                  <Box sx={{ border: '1px solid black' }}>
-                    <BpTypography component="p" variant="h6">
-                      {user?.settings?.calories.total || 0}
-                    </BpTypography>
-                    <BpTypography component="p" variant="h6">
-                      Limit
-                    </BpTypography>
-                  </Box>
-                </Stack>
-                <Box component="form" onSubmit={formik.handleSubmit}>
-                  <TextField
-                    id="calories"
-                    name="calories"
-                    label="Calorías"
-                    type="number"
-                    placeholder="Calorías"
-                    value={formik.values.calories}
-                    onChange={formik.handleChange}
-                    error={formik.touched.calories && Boolean(formik.errors.calories)}
-                    helperText={formik.touched.calories && formik.errors.calories}
-                    fullWidth
-                    sx={{
-                      mb: 2
-                    }}
-                    inputProps={{
-                      'aria-label': 'calories'
-                    }}
-                  />
-                  <Button type="submit" variant="contained" color="secondary" fullWidth>
-                    Guardar cambios
-                  </Button>
-                </Box>
-              </CardContent>
-            </Card>
+          <Grid item xs={12} sm={6} md={5}>
+            <ProfileSetting />
           </Grid>
-          <Grid item xs={12} sm={6} md={8}>
-            <Card>
-              <CardContent>Informacion del usuario</CardContent>
-            </Card>
+          <Grid item xs={12} sm={6} md={7}>
+            <BpTypography mb={1} component="p" variant="body1">
+              Productos que puedes consumir de acuerdo a tu límite de calorías
+            </BpTypography>
+            <Alert severity="info" sx={{ mb: 2 }}>
+              Solo se muestran los productos menores o igual a {user?.settings?.calories.remaining || 0}Kcal
+            </Alert>
+            <ProductList
+              products={products}
+              loading={loading}
+              loadingFetchingMore={loadingMore}
+              onFetchMore={onGetMoreProducts}
+              showLoadMore={showLoadMore}
+            />
           </Grid>
         </Grid>
       </Container>

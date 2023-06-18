@@ -62,7 +62,14 @@ const SectionHero: FC<Props> = ({ showButtonRegister }) => {
             Explora nuestra exquisita gama ecológica y saludable de Danone. Deliciosos sabores que cuidan de ti y del
             planeta. ¡Descubre una experiencia única!
           </Typography>
-          <Stack gap={2} mt={4}>
+          <Stack
+            justifyContent={{
+              xs: 'center',
+              sm: 'left'
+            }}
+            gap={2}
+            mt={4}
+          >
             <Button
               size="large"
               sx={{

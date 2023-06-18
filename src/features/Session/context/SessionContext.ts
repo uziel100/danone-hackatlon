@@ -10,6 +10,7 @@ export interface SessionContextProps extends SessionContextState {
   onLogout: () => void;
   onUpdateUser: (data: Partial<User>) => void;
   onUpdateCalories: (data: UserSettings) => void;
+  onSubtractCalories: (data: number) => void;
 }
 
 export const SessionContext = createContext<SessionContextProps>({} as SessionContextProps);

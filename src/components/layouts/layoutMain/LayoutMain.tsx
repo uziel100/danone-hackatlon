@@ -12,7 +12,6 @@ const MainStyle = styled('main')(() => ({
 }));
 
 const LayoutMain = ({ children }: { children: ReactNode }) => {
-  console.log('LayoutMain');
   const router = useRouter();
 
   return (

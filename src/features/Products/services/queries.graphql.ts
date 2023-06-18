@@ -10,6 +10,7 @@ export const PRODUCTS_RESULTS = graphql(`
       limit
       items {
         productName
+        energeticValue
         slug
         sys {
           id

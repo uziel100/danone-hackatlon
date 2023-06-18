@@ -20,7 +20,8 @@ export const RootAppBarStyle = styled(AppBar, {
   boxShadow: !isScroll ? 'none' : '0px 10px 15px -11px rgba(0,0,0,0.1)',
   top: 0,
   background: !isScroll ? '#FFF' : 'rgba(255,255,255,0.6)',
-  backdropFilter: 'blur(15px)'
+  backdropFilter: 'blur(15px)',
+  justifyContent: 'center'
 }));
 
 export const SessionMenuStyle = styled('button', {
