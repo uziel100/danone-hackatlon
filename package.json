@@ -32,8 +32,6 @@
     "@mui/material": "^5.4.4",
     "@mui/styles": "^5.4.4",
     "@mui/x-date-pickers": "^5.0.1",
-    "check-password-strength": "^2.0.7",
-    "cookie": "^0.5.0",
     "cookies-next": "^2.1.1",
     "cross-fetch": "^3.1.5",
     "date-fns": "^2.29.3",
@@ -49,6 +47,7 @@
     "prop-types": "^15.8.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "uuid": "^9.0.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {
@@ -68,6 +67,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-google-recaptcha": "^2.1.5",
+    "@types/uuid": "^9.0.2",
     "@types/websocket": "^1.0.5",
     "@typescript-eslint/eslint-plugin": "^5.53.0",
     "@typescript-eslint/parser": "^5.53.0",

@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 
 import { styled } from '@mui/material';
 import { HEADER, NavbarHorizontal } from '@/components/common';
+import { useRouter } from 'next/router';
 
 const MainStyle = styled('main')(() => ({
   paddingTop: 16,
@@ -12,10 +13,11 @@ const MainStyle = styled('main')(() => ({
 
 const LayoutMain = ({ children }: { children: ReactNode }) => {
   console.log('LayoutMain');
+  const router = useRouter();
+
   return (
     <>
-      <NavbarHorizontal onToggleDrawer={() => {}} />
-
+      <NavbarHorizontal onToggleDrawer={() => router.push('/')} />
       <MainStyle>{children}</MainStyle>
     </>
   );

@@ -19,6 +19,7 @@ import { ThemeContextProvider } from '@/context/theme/ThemeContextProvider';
 import { EmotionCache } from '@emotion/cache';
 
 import '@/components/styles/styles.global.css';
+import SessionProvider from '@/features/Session/context/SessionProvider';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -62,7 +63,7 @@ const WebApp: FC<WebAppPropsWithLayout> = ({ Component, emotionCache = clientSid
                 cancelButtonLabel: 'Cerrar'
               }}
             >
-              {getLayout(<Component {...pageProps} />)}
+              <SessionProvider>{getLayout(<Component {...pageProps} />)}</SessionProvider>
             </LocalizationProvider>
           </SnackbarProvider>
         </ThemeContextProvider>

@@ -201,6 +201,14 @@ export type AssetLinkingCollectionsProductCollectionArgs = {
 };
 
 export enum AssetLinkingCollectionsProductCollectionOrder {
+  AvailableInAsc = 'availableIn_ASC',
+  AvailableInDesc = 'availableIn_DESC',
+  CarbohydratesAsc = 'carbohydrates_ASC',
+  CarbohydratesDesc = 'carbohydrates_DESC',
+  EnergeticValueAsc = 'energeticValue_ASC',
+  EnergeticValueDesc = 'energeticValue_DESC',
+  FatsAsc = 'fats_ASC',
+  FatsDesc = 'fats_DESC',
   IsEcoFarmingAsc = 'isEcoFarming_ASC',
   IsEcoFarmingDesc = 'isEcoFarming_DESC',
   ProductNameAsc = 'productName_ASC',
@@ -395,15 +403,30 @@ export type ImageTransformOptions = {
 /** Danone products [See type definition](https://app.contentful.com/spaces/jzm5e5q0ijrn/content_types/product) */
 export type Product = Entry & {
   __typename?: 'Product';
+  availableIn?: Maybe<Scalars['Float']>;
+  carbohydrates?: Maybe<Scalars['Float']>;
   contentfulMetadata: ContentfulMetadata;
   description?: Maybe<ProductDescription>;
-  energeticValue?: Maybe<ProductEnergeticValue>;
+  energeticValue?: Maybe<Scalars['Float']>;
+  fats?: Maybe<Scalars['Float']>;
   image?: Maybe<Asset>;
   isEcoFarming?: Maybe<Scalars['Boolean']>;
   linkedFrom?: Maybe<ProductLinkingCollections>;
   productName?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   sys: Sys;
+};
+
+
+/** Danone products [See type definition](https://app.contentful.com/spaces/jzm5e5q0ijrn/content_types/product) */
+export type ProductAvailableInArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Danone products [See type definition](https://app.contentful.com/spaces/jzm5e5q0ijrn/content_types/product) */
+export type ProductCarbohydratesArgs = {
+  locale?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -415,6 +438,12 @@ export type ProductDescriptionArgs = {
 
 /** Danone products [See type definition](https://app.contentful.com/spaces/jzm5e5q0ijrn/content_types/product) */
 export type ProductEnergeticValueArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** Danone products [See type definition](https://app.contentful.com/spaces/jzm5e5q0ijrn/content_types/product) */
+export type ProductFatsArgs = {
   locale?: InputMaybe<Scalars['String']>;
 };
 
@@ -482,41 +511,49 @@ export type ProductDescriptionLinks = {
   entries: ProductDescriptionEntries;
 };
 
-export type ProductEnergeticValue = {
-  __typename?: 'ProductEnergeticValue';
-  json: Scalars['JSON'];
-  links: ProductEnergeticValueLinks;
-};
-
-export type ProductEnergeticValueAssets = {
-  __typename?: 'ProductEnergeticValueAssets';
-  block: Array<Maybe<Asset>>;
-  hyperlink: Array<Maybe<Asset>>;
-};
-
-export type ProductEnergeticValueEntries = {
-  __typename?: 'ProductEnergeticValueEntries';
-  block: Array<Maybe<Entry>>;
-  hyperlink: Array<Maybe<Entry>>;
-  inline: Array<Maybe<Entry>>;
-};
-
-export type ProductEnergeticValueLinks = {
-  __typename?: 'ProductEnergeticValueLinks';
-  assets: ProductEnergeticValueAssets;
-  entries: ProductEnergeticValueEntries;
-};
-
 export type ProductFilter = {
   AND?: InputMaybe<Array<InputMaybe<ProductFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<ProductFilter>>>;
+  availableIn?: InputMaybe<Scalars['Float']>;
+  availableIn_exists?: InputMaybe<Scalars['Boolean']>;
+  availableIn_gt?: InputMaybe<Scalars['Float']>;
+  availableIn_gte?: InputMaybe<Scalars['Float']>;
+  availableIn_in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+  availableIn_lt?: InputMaybe<Scalars['Float']>;
+  availableIn_lte?: InputMaybe<Scalars['Float']>;
+  availableIn_not?: InputMaybe<Scalars['Float']>;
+  availableIn_not_in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+  carbohydrates?: InputMaybe<Scalars['Float']>;
+  carbohydrates_exists?: InputMaybe<Scalars['Boolean']>;
+  carbohydrates_gt?: InputMaybe<Scalars['Float']>;
+  carbohydrates_gte?: InputMaybe<Scalars['Float']>;
+  carbohydrates_in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+  carbohydrates_lt?: InputMaybe<Scalars['Float']>;
+  carbohydrates_lte?: InputMaybe<Scalars['Float']>;
+  carbohydrates_not?: InputMaybe<Scalars['Float']>;
+  carbohydrates_not_in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
   description_contains?: InputMaybe<Scalars['String']>;
   description_exists?: InputMaybe<Scalars['Boolean']>;
   description_not_contains?: InputMaybe<Scalars['String']>;
-  energeticValue_contains?: InputMaybe<Scalars['String']>;
+  energeticValue?: InputMaybe<Scalars['Float']>;
   energeticValue_exists?: InputMaybe<Scalars['Boolean']>;
-  energeticValue_not_contains?: InputMaybe<Scalars['String']>;
+  energeticValue_gt?: InputMaybe<Scalars['Float']>;
+  energeticValue_gte?: InputMaybe<Scalars['Float']>;
+  energeticValue_in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+  energeticValue_lt?: InputMaybe<Scalars['Float']>;
+  energeticValue_lte?: InputMaybe<Scalars['Float']>;
+  energeticValue_not?: InputMaybe<Scalars['Float']>;
+  energeticValue_not_in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+  fats?: InputMaybe<Scalars['Float']>;
+  fats_exists?: InputMaybe<Scalars['Boolean']>;
+  fats_gt?: InputMaybe<Scalars['Float']>;
+  fats_gte?: InputMaybe<Scalars['Float']>;
+  fats_in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+  fats_lt?: InputMaybe<Scalars['Float']>;
+  fats_lte?: InputMaybe<Scalars['Float']>;
+  fats_not?: InputMaybe<Scalars['Float']>;
+  fats_not_in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
   image_exists?: InputMaybe<Scalars['Boolean']>;
   isEcoFarming?: InputMaybe<Scalars['Boolean']>;
   isEcoFarming_exists?: InputMaybe<Scalars['Boolean']>;
@@ -552,6 +589,14 @@ export type ProductLinkingCollectionsEntryCollectionArgs = {
 };
 
 export enum ProductOrder {
+  AvailableInAsc = 'availableIn_ASC',
+  AvailableInDesc = 'availableIn_DESC',
+  CarbohydratesAsc = 'carbohydrates_ASC',
+  CarbohydratesDesc = 'carbohydrates_DESC',
+  EnergeticValueAsc = 'energeticValue_ASC',
+  EnergeticValueDesc = 'energeticValue_DESC',
+  FatsAsc = 'fats_ASC',
+  FatsDesc = 'fats_DESC',
   IsEcoFarmingAsc = 'isEcoFarming_ASC',
   IsEcoFarmingDesc = 'isEcoFarming_DESC',
   ProductNameAsc = 'productName_ASC',
@@ -673,5 +718,16 @@ export type ProductCollectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type ProductCollectionQuery = { __typename?: 'Query', productCollection?: { __typename?: 'ProductCollection', items: Array<{ __typename?: 'Product', productName?: string | null, slug?: string | null, description?: { __typename?: 'ProductDescription', json: any } | null, image?: { __typename?: 'Asset', url?: string | null } | null } | null> } | null };
 
+export type ProductsResultsQueryVariables = Exact<{
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ProductFilter>;
+  order?: InputMaybe<Array<InputMaybe<ProductOrder>> | InputMaybe<ProductOrder>>;
+}>;
+
+
+export type ProductsResultsQuery = { __typename?: 'Query', productCollection?: { __typename?: 'ProductCollection', total: number, skip: number, limit: number, items: Array<{ __typename?: 'Product', productName?: string | null, slug?: string | null, isEcoFarming?: boolean | null, sys: { __typename?: 'Sys', id: string }, description?: { __typename?: 'ProductDescription', json: any } | null, image?: { __typename?: 'Asset', url?: string | null, title?: string | null } | null } | null> } | null };
+
 
 export const ProductCollectionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"productCollection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"productCollection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"productName"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}}]}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]} as unknown as DocumentNode<ProductCollectionQuery, ProductCollectionQueryVariables>;
+export const ProductsResultsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"productsResults"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"skip"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ProductFilter"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"order"}},"type":{"kind":"ListType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ProductOrder"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"productCollection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"skip"},"value":{"kind":"Variable","name":{"kind":"Name","value":"skip"}}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}},{"kind":"Argument","name":{"kind":"Name","value":"order"},"value":{"kind":"Variable","name":{"kind":"Name","value":"order"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"total"}},{"kind":"Field","name":{"kind":"Name","value":"skip"}},{"kind":"Field","name":{"kind":"Name","value":"limit"}},{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"productName"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"isEcoFarming"}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}}]}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]}}]}}]} as unknown as DocumentNode<ProductsResultsQuery, ProductsResultsQueryVariables>;

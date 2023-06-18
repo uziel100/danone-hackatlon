@@ -14,6 +14,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "\n  query productCollection {\n    productCollection {\n      items {\n        productName\n        slug\n        description {\n          json\n        }\n        image {\n          url\n        }\n      }\n    }\n  }\n": types.ProductCollectionDocument,
+    "\n  query productsResults($skip: Int, $limit: Int, $where: ProductFilter, $order: [ProductOrder]) {\n    productCollection(skip: $skip, limit: $limit, where: $where, order: $order) {\n      total\n      skip\n      limit\n      items {\n        productName\n        slug\n        sys {\n          id\n        }\n        isEcoFarming\n        description {\n          json\n        }\n        image {\n          url\n          title\n        }\n      }\n    }\n  }\n": types.ProductsResultsDocument,
 };
 
 /**
@@ -34,6 +35,10 @@ export function graphql(source: string): unknown;
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  query productCollection {\n    productCollection {\n      items {\n        productName\n        slug\n        description {\n          json\n        }\n        image {\n          url\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query productCollection {\n    productCollection {\n      items {\n        productName\n        slug\n        description {\n          json\n        }\n        image {\n          url\n        }\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query productsResults($skip: Int, $limit: Int, $where: ProductFilter, $order: [ProductOrder]) {\n    productCollection(skip: $skip, limit: $limit, where: $where, order: $order) {\n      total\n      skip\n      limit\n      items {\n        productName\n        slug\n        sys {\n          id\n        }\n        isEcoFarming\n        description {\n          json\n        }\n        image {\n          url\n          title\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query productsResults($skip: Int, $limit: Int, $where: ProductFilter, $order: [ProductOrder]) {\n    productCollection(skip: $skip, limit: $limit, where: $where, order: $order) {\n      total\n      skip\n      limit\n      items {\n        productName\n        slug\n        sys {\n          id\n        }\n        isEcoFarming\n        description {\n          json\n        }\n        image {\n          url\n          title\n        }\n      }\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

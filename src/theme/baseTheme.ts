@@ -45,10 +45,10 @@ const BaseTheme: ThemeOptions = {
       fontSize: '1.125rem' // 18px
     },
     body1: {
-      fontSize: '1.125rem' // 18px
+      fontSize: '1rem' // 18px
     },
     body2: {
-      fontSize: '1rem' // 14px
+      fontSize: '0.875rem' // 14px
     },
     button: {
       fontFamily: 'Inter',
