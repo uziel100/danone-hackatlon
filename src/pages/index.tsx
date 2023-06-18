@@ -2,7 +2,7 @@ import type { ReactElement } from 'react';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { ProductCard } from '@/features/Home/models/productModel';
 import SectionHero from '@/features/Home/components/SectionHero';
-// import SectionFooter from '@/features/Home/components/SectionFooter';
+import SectionFooter from '@/features/Home/components/SectionFooter';
 import SectionAbout from '@/features/Home/components/SectionAbout';
 import { useSessionContext } from '@/features/Session/context/SessionContext';
 import SectionProducts from '@/features/Home/components/SectionProducts';
@@ -41,7 +41,7 @@ const HomePage = ({ products }: InferGetServerSidePropsType<typeof getServerSide
       <SectionHero showButtonRegister={!user} />
       <SectionAbout />
       <SectionProducts products={products} />
-      {/* <SectionFooter /> */}
+      <SectionFooter />
     </>
   );
 };
