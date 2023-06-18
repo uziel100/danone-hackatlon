@@ -6,7 +6,10 @@
 
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true
+  swcMinify: true,
+  images: {
+    domains: ['images.ctfassets.net']
+  }
 };
 
 module.exports = nextConfig;

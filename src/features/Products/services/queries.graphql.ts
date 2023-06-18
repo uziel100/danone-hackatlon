@@ -26,3 +26,31 @@ export const PRODUCTS_RESULTS = graphql(`
     }
   }
 `);
+
+export const GET_PRODUCT = graphql(`
+  query getProduct($limit: Int, $where: ProductFilter) {
+    productCollection(limit: $limit, where: $where) {
+      items {
+        availableIn
+        carbohydrates
+        description {
+          json
+        }
+        contentfulMetadata {
+          tags {
+            id
+            name
+          }
+        }
+        fats
+        image {
+          url
+          fileName
+        }
+        isEcoFarming
+        productName
+        slug
+      }
+    }
+  }
+`);

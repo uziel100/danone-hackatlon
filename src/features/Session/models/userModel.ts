@@ -7,9 +7,9 @@ export interface UserSettings {
 
 export interface User {
   id?: string;
-  fullName: string;
-  email: string;
-  password: string;
+  fullName?: string;
+  email?: string;
+  password?: string;
   token?: string;
   settings?: UserSettings;
 }

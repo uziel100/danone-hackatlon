@@ -3,6 +3,7 @@ import { Product, ProductFilters } from '../../models/productModel';
 
 export interface ProductsFilterContextState {
   loading: boolean;
+  pagination: any;
   filters: ProductFilters;
   items: any[] | null;
 }

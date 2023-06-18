@@ -1,11 +1,27 @@
+import { ProductDescription } from '@/typesGQL/graphql';
+
 export interface Product {
   title: string;
   slug: string;
   image: string;
-  description: any;
+  description: string;
 }
 
 export interface ProductFilters {
   query?: string;
   isEcoFarming?: boolean;
+}
+
+export interface ProductPagination {
+  skip?: number;
+  limit?: number;
+  order?: string;
+}
+
+export interface ProductDetail extends Product {
+  descriptionRichText: ProductDescription;
+  availableIn: number;
+  fats: number;
+  carbohydrates: number;
+  energeticValue: number;
 }

@@ -1,12 +1,23 @@
 import { ProductFilter, Product as ProductRoot } from '@/typesGQL/graphql';
-import { Product, ProductFilters } from '../models/productModel';
+import { Product, ProductDetail, ProductFilters } from '../models/productModel';
 
-// eslint-disable-next-line import/prefer-default-export
 export const productAdapter = (data: ProductRoot): Product => ({
   title: data.productName ?? '',
   slug: data.slug ?? '',
-  description: data.description ?? '',
+  description: `Description: ${data.productName}`,
   image: data.image?.url ?? ''
+});
+
+export const productDetailAdapter = (data: ProductRoot): ProductDetail => ({
+  title: data.productName ?? '',
+  slug: data.slug ?? '',
+  description: `Description: ${data.productName}`,
+  descriptionRichText: data.description?.json,
+  image: data.image?.url ?? '',
+  availableIn: data.availableIn ?? 0,
+  carbohydrates: data.carbohydrates ?? 0,
+  energeticValue: data.energeticValue ?? 0,
+  fats: data.fats ?? 0
 });
 
 export const productFiltersAdapter = (filters: ProductFilters): ProductFilter => {

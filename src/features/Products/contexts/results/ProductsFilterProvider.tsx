@@ -6,6 +6,7 @@ import { Product, ProductFilters } from '../../models/productModel';
 const INITIAL_STATE: ProductsFilterContextState = {
   loading: false,
   filters: {},
+  pagination: {},
   items: []
 };
 

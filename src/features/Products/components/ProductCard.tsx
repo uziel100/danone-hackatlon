@@ -6,8 +6,9 @@ interface Props {
   title: string;
   image: string;
   description: string;
+  onClick: () => void;
 }
-const ProductCard: FC<Props> = ({ title, image, description }) => (
+const ProductCard: FC<Props> = ({ title, image, description, onClick }) => (
   <Card elevation={0} sx={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius: 2 }}>
     <CardMedia
       component="div"
@@ -19,6 +20,7 @@ const ProductCard: FC<Props> = ({ title, image, description }) => (
           backgroundSize: 'contain'
         }
       }}
+      onClick={onClick}
       image={image}
       title={title}
     />

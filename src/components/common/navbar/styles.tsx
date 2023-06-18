@@ -1,19 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { AppBar, Badge } from '@mui/material';
-
-export const RootStyle = styled('div')(({ theme }) => ({
-  [theme.breakpoints.up('lg')]: {
-    flexShrink: 0,
-    transition: theme.transitions.create('width', {
-      duration: theme.transitions.duration.shorter
-    })
-  }
-}));
-
-export const BadgeStyle = styled(Badge)({
-  marginRight: 16,
-  display: 'block'
-});
+import { AppBar } from '@mui/material';
 
 interface RootAppBarStyleProps {
   isScroll: boolean;
