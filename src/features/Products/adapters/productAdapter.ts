@@ -5,7 +5,8 @@ export const productAdapter = (data: ProductRoot): Product => ({
   title: data.productName ?? '',
   slug: data.slug ?? '',
   image: data.image?.url ?? '',
-  energeticValue: data.energeticValue ?? 0
+  energeticValue: data.energeticValue ?? 0,
+  isEcoFarming: data.isEcoFarming ?? false
 });
 
 export const productListAdapter = (data: ProductsResultsQuery): ProductList => ({
@@ -21,7 +22,8 @@ export const productDetailAdapter = (data: ProductRoot): ProductDetail => ({
   availableIn: data.availableIn ?? 0,
   carbohydrates: data.carbohydrates ?? 0,
   energeticValue: data.energeticValue ?? 0,
-  fats: data.fats ?? 0
+  fats: data.fats ?? 0,
+  isEcoFarming: data.isEcoFarming ?? false
 });
 
 export const productFiltersAdapter = (filters: ProductFilters): ProductFilter => {

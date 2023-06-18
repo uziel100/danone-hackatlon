@@ -32,11 +32,7 @@ const ProductList: FC<Props> = ({ loading, products, loadingFetchingMore, showLo
 
   return (
     <>
-      {selectedProduct && (
-        <ModalAddProduct product={selectedProduct} open={openModal} onClose={handleCloseModal}>
-          {selectedProduct?.title}
-        </ModalAddProduct>
-      )}
+      {selectedProduct && <ModalAddProduct product={selectedProduct} open={openModal} onClose={handleCloseModal} />}
       <Grid container spacing={3}>
         {loading &&
           new Array(12).fill(0).map((_, index) => (

@@ -5,6 +5,7 @@ export interface Product {
   slug: string;
   image: string;
   energeticValue: number;
+  isEcoFarming: boolean;
 }
 
 export interface ProductList {

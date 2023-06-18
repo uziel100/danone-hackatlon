@@ -1,8 +1,7 @@
-import { ReactNode } from 'react';
-
+import { ReactNode, useState } from 'react';
 import { styled } from '@mui/material';
 import { HEADER, NavbarHorizontal } from '@/components/common';
-import { useRouter } from 'next/router';
+import SidebarDrawer from '@/components/common/navbar/SidebarDrawer';
 
 const MainStyle = styled('main')(() => ({
   paddingTop: 16,
@@ -12,11 +11,12 @@ const MainStyle = styled('main')(() => ({
 }));
 
 const LayoutMain = ({ children }: { children: ReactNode }) => {
-  const router = useRouter();
+  const [openDrawer, setOpenDrawer] = useState(false);
 
   return (
     <>
-      <NavbarHorizontal onToggleDrawer={() => router.push('/')} />
+      <NavbarHorizontal onToggleDrawer={() => setOpenDrawer(true)} />
+      <SidebarDrawer open={openDrawer} onClose={() => setOpenDrawer(false)} />
       <MainStyle>{children}</MainStyle>
     </>
   );
